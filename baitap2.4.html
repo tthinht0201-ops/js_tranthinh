@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title> table</title>
+        <style>
+            main { width:   1000px;}
+            th {
+                background-color: red;
+            }
+            table th,td {
+                border-color: blue;
+                border-collapse: collapse;
+                border: 1px dotted;
+            }
+        </style>
+    </head>
+    <body>
+       <table border="1" style="width: 1000px;">
+        <tr>
+            <th style="width: 30%;">component</th>
+            <th>display</th>
+        </tr>
+        </td>
+        <td>
+            <p><b>input text</b></p></td>
+        <td>
+           <input type ="text" id="iptext" name="iptext"/>
+        </td>
+        <tr>
+            <td>textarea </td>
+            <td>
+                <textarea name="textarea" rows="4" cols="50"></textarea>
+            </td>
+        <tr>
+            <td> button</td>
+            <td>
+                <button> click me</button>  
+            </td>
+        </tr>
+         <tr>
+            <td>radio</td>
+            <td>
+            <input type="radio" id="gender" name="gender" value="M" />Male<br>
+            <input type="radio" id="gender" name="gender" value="F" />FeMale<br>
+            </td>
+        </tr>
+          <tr>
+            <td>multiple election</td>
+            <td>
+            <input type="checkbox" id="option" name="option1" value="true" />option1<br>
+            <input type="checkbox" id="option" name="option2" value="true" />option2<br>
+            <input type="checkbox" id="option" name="option3" value="true" />option3<br>
+            </td>
+        </tr>
+         <tr>
+            <td>dropdown</td>
+            <td>
+            <select name="country">
+            <option value="EN">ENGLAND</option>
+            <option value="JP">JAPAN</option>
+            <option value="VN" selected>VIETNAM</option>
+            </select>
+            </td>
+        </tr>
+         <tr>
+            <td>file selected</td>
+            <td>
+            <input type="file" id="uploadimg" name="uploadimg" >
+            
+            </td>
+        </tr>
+       </table>
+    </body>
+</html>
