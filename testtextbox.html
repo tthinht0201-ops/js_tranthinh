@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title> table</title>
+        <link ref="stylesheet" href="css/style.css">
+        <style>
+            #box1 { width:   300px;
+                height: 500px;
+                background-color: red;
+                margin-bottom: 15px;
+            }
+            #box2 {width:   300px;
+                height: 500px;
+                background-color: blue;
+                padding: 15px 15px;
+                font-size: bold;
+                font-family: 'Times New Roman', Times, serif;
+
+            }
+            .textbox2{
+                color: white;
+                font-style: italic;
+            }
+            .textSpan{
+                color: red;
+                font-size:  inherit;
+                font-weight: bolder;
+            }
+            .textbox2::before{
+                content:" readthis";
+            }
+            .textbox2::after{
+                content: "sontung";
+            }
+            #gototop a{
+                color: black;
+                font-size: 30px;
+                text-decoration: none;
+            }
+            #listUL {
+                list-style-type: none;
+            }
+        </style>
+    </head>
+    <body>
+       <div id="box1">
+
+       </div>
+       <div id="box2">
+        <p class="textbox2"><b>Lorem Ipsum</b> is simply dummy text of the printing and
+             typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+              <span class="textSpan">since the 1500s,</span>
+              when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+       </div>
+       <div id="gototop">
+            <a href="#" class="cd-top text-replace js-cd-top">TOP</a>
+       </div>
+       <ul id="listUL">
+            <li>apple</li>
+            <li>mango</li>
+            <li>banana</li>
+       </ul>
+    </body>
+</html>
