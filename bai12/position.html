@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>dhkhtn</title>
+        <style>
+            /* nav{
+                position: fixed;
+                top: 0; left: 0;
+                width:  100%;
+                background: black;
+                color: wheat;
+            } */
+            nav{
+                position: sticky;
+                top: 0; left: 0;
+                width:  100%;
+                background: black;
+                color: wheat;
+            }
+            .boxstatic{
+                position: static;
+                width: 100px;
+                border: 1px solid red;
+            }
+
+            .box-relative{
+                position: relative;
+                top: 20px; left: 30px;
+                width: 100px; border: 1px solid red;
+            }
+            .box-scroll-top{
+                position: relative;
+                top:80%; left: 80%;
+                width: 100px; 
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+            trang chu | thong tin| lien he
+        </nav>
+        <h2>position</h2>
+        <div class="boxstatic">boxstatic</div>
+        <div class="box-relative">box-relative</div>
+        <div style="width: 100px; height: 1000px;"></div>
+        <div class="box-scroll-top">
+            <img src="img/logo.png" alt="box-scroll-top" width="100%"/>
+        </div>
+    </body>
+</html>

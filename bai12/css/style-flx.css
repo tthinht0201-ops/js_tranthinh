@@ -1,0 +1,88 @@
+.colorbrown{ color: brown}
+.colorblue{ color: blue}
+.container-1{
+    display: flex;
+    background: wheat;
+    padding: 20px;
+    gap: 10px;
+}
+.item-1{
+    background: green;
+    color: white;
+    padding: 30px;
+    font-size:40px ;
+}
+.container-2{
+    display: flex;
+     flex-direction: column; /*xep theo chieu doc  */
+    background: wheat;
+    padding: 20px;
+    gap: 10px;
+}
+.item-2{
+    background: green;
+    color: white;
+    padding: 30px;
+    font-size: 20px;
+}
+
+.container-3{
+    display: flex;
+     justify-content: center;/* canh theo chieu ngang */
+    align-items: stretch; /*canh theo chieu doc*/
+    background: wheat;
+    height: 300px;
+}
+.box{
+    background: green;
+    color: white;
+    padding: 30px;
+}
+
+.container-4{
+    display: flex;
+     flex-wrap: wrap;/* ep xuong dong khi vuot qua width*/
+    background: wheat;
+    padding: 20px;
+    gap: 20px;
+    width: 25%;
+}
+.item-4{
+    background: green;
+    color: white;
+    padding: 30px;
+    font-size: 20px;
+}
+
+.container-partner{
+    display: flex;
+    flex-wrap: wrap;/* ep xuong dong khi vuot qua width*/
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
+}
+.item-partner{
+    color: white;
+    padding: 30px;
+    font-size: 20px;
+    box-shadow: 5px 5px 0px opx rgba(0, 0, 0, 0.3);
+    width: 25%;
+    text-align: center;
+}
+
+.container-avatar{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
+}
+
+.item-avatar{
+    color: black;
+    padding: 30px;
+    font-size: 20px;
+    box-shadow: 5px 5px 0px opx rgba(0, 0, 0, 0.3);
+    width: 20%;
+    font-family: Arial, Helvetica, sans-serif;
+}
