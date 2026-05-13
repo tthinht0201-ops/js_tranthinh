@@ -1,0 +1,126 @@
+<html>
+
+<head>
+    <title>JS</title>
+</head>
+
+<body>
+    <table border="1" width="400">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="checkAll" onchange="toggleCheckAll(this)"></th>
+                <th>Tên</th>
+                <th>Giá</th>
+                <th>hinh anh san pham</th>
+                <th>Số lượng</th>
+            </tr>
+        </thead>
+        <tbody id="cart-table"></tbody>
+    </table>
+
+    <button onclick="clearAll()">Xóa hết giỏ hàng</button>
+    <button onclick="deletedChecked()">Xóa hết checkbox</button>
+
+    <script>
+        // Tạo dữ liệu giỏ hàng
+        //var cart = [
+        //{ name: "iphone 15", price: 1500, img: "img/iphone15.jpg", qty: 1,checked:false },
+        //{ name: "samsung s24", price: 25, img: "img/samsung-s24.png", qty: 2,checked:false },
+        //{ name: "xiaomi", price: 70, img: "img/xiaomi.png", qty: 1,checked:false }
+        //];
+
+        let cart = JSON.parse(localStorage.getItem("cart") || [
+            { name: "iphone 15", price: 1500, img: "img/iphone15.jpg", qty: 1, checked: false },
+            { name: "samsung s24", price: 25, img: "img/samsung-s24.png", qty: 2, checked: false },
+            { name: "xiaomi", price: 70, img: "img/xiaomi.png", qty: 1, checked: false }
+        ]);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        console.log(localStorage.getItem("cart"))
+
+        //xoas local store
+        function clearAll(){
+            localStorage.clear();
+        }
+
+        //kiem tra card da ton tai chua
+        //if (localStorage.getItem('cart') == null) {
+            //localStorage.setItem("cart", JSON.stringify(cart));
+        //}
+
+        // Lấy dữ liệu ra
+        //var cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
+        //console.log(localStorage.getItem("cart"))
+
+        //function clearAll() {
+            //localStorage.clear();
+        //}
+
+        function rendercart() {
+            // Hiển thị trên table
+            var tableBody = document.getElementById("cart-table");
+            let html = "";
+
+            if (cart.length === 0) {
+                html += `<tr>
+                    <th colspan="5"> khong co san pham</th>
+                    </tr>`;
+            } else {
+
+                cartData.forEach((item, index) => {
+                    html += `<tr>
+            <td><input type="checkbox"
+                ${item.checked ? "checked" : ""}              
+                 onchange="toggleItem(${index}, this.checked)"/></td>
+            <td>${item.name}</td>
+            <td>${item.price}</td>
+            <td><input type="number" name="qty" onchange="updateQty(${index},this.value)" value="${item.qty}"/></td>
+            <td><center><img src="${item.img}" width="50%" /><center></td>
+            </tr> `;
+                });
+                tableBody.innerHTML = html;
+            }
+
+            function toggleItem(index, checked) {
+                cart[index].checked = checked;
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+
+            //update so luong
+            function updateQty(index, newQty) {
+                cart[index].qty = Number(newQty);
+                localStorage.clear();
+                localStorage.setItem("cart", JSON.stringify(cart));
+
+                console.log(index);
+                console.log(newQty);
+                console.log(localStorage.getItem("cart"))
+            }
+
+            rendercart();
+
+            function toggleCheckAll(checkbox) {
+                console.log(checkbox.checked)
+                cart.forEach(item => {
+                    item.checked = checkbox.checked;
+                })
+                console.log(cart)
+                localStorage.setItem("cart", JSON.stringify(cart));
+                rendercart();
+            }
+
+            function deletedChecked() {
+                cart.filter(item => !item.checked);
+                console.log(cart)
+                localStorage.setItem("cart", JSON.stringify(cart));
+                rendercart();
+            }
+            rendercart();
+        }
+        
+
+    </script>
+
+</body>
+
+</html>
