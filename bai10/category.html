@@ -4,313 +4,170 @@
     <link rel="stylesheet" type="text/css" href="asset/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
- <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="index.html">Phone Store</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Shop
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item" href="category.html">
-                                    All Products
-                                </a>
-                            </li>
-
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="category.html">
-                                    Popular Items
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="category.html">
-                                    New Arrivals
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-                <form class="d-flex" onsubmit="event.preventDefault(); window.location.href='cart.html';">
-                    <button class="btn btn-outline-dark" type="submit">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">
-                            0
-                        </span>
-                    </button>
-                </form>
-                </form>
-            </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="index.html">Phone Store</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+            <!-- CART -->
+            <form class="d-flex"
+                onsubmit="event.preventDefault(); window.location.href='cart.html';">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Cart
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">
+                        0
+                    </span>
+                </button>
+            </form>
         </div>
-    </nav>
+    </div>
+</nav>
+<!-- HERO -->
 <style>
-    .hero-header{
-        background-image:
-        linear-gradient(
-            rgba(0,0,0,0.5),
-            rgba(0,0,0,0.5)
-        ),
-        url('img/bgphone.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        min-height: 50vh;
-        display: flex;
-        align-items: center;
-    }
-    .hero-box{
-        background: rgba(255,255,255,0.1);
-        backdrop-filter: blur(8px);
-        border-radius: 20px;
-        color: white;
-    }
+.hero-header{
+    background-image:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('img/bgphone.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+}
+.hero-box{
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    color: white;
+}
 </style>
 <header class="hero-header py-5">
     <div class="container px-lg-5">
         <div class="hero-box p-4 p-lg-5 text-center">
-            <div class="m-4 m-lg-5">
-                <h1 class="display-5 fw-bold">
-                    Iphone 15 Pro Max
-                </h1>
-                <p class="fs-4">
-                    Siêu phẩm flagship với thiết kế sang trọng,
-                    camera AI và hiệu năng mạnh mẽ.
-                </p>
-                <a class="btn btn-primary btn-lg"
-                    href="detail.html">
-                    Check detail
-                </a>
-            </div>
+            <h1 class="display-5 fw-bold">
+                Iphone 15 Pro Max
+            </h1>
+            <p class="fs-4">
+                Siêu phẩm flagship với thiết kế sang trọng,
+                camera AI và hiệu năng mạnh mẽ.
+            </p>
+            <a class="btn btn-primary btn-lg"
+                href="detail.html">
+                Check detail
+            </a>
         </div>
     </div>
 </header>
-
-    <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="img/iphone-15.png" alt="...">
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Iphone 15</h5>
-                                    <!-- Product price-->
-                                    $40.00 - $80.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="detail.html">View options</a></div>
-                            </div>
-                        </div>
+<!-- SORT -->
+<div class="container mt-4">
+    <div class="d-flex justify-content-end">
+        <select id="sortPrice" class="form-select" style="width:200px;">
+            <option value="default">price</option>
+            <option value="asc">Price: Low → High</option>
+            <option value="desc">Price: High → Low</option>
+        </select>
+    </div>
+</div>
+<!-- PRODUCT LIST -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <!-- ITEM 1 -->
+            <div class="col mb-5 product-item" data-price="40">
+                <div class="card h-100">
+                    <img class="card-img-top" src="img/iphone-15.png">
+                    <div class="card-body p-4 text-center">
+                        <h5 class="fw-bolder">Iphone 15</h5>
+                        $40.00 - $80.00
                     </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="img/xiaomi.png" alt="...">
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">xiaomi</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$20.00</span>
-                                    $18.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="img/samsung-s24.png" alt="...">
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">samsung-s24</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="img/iphone-15.png" alt="...">
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Popular Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    $40.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="img/samsung-s24.png" alt="...">
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Sale Item</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="img/xiaomi.png" alt="...">
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Fancy Product</h5>
-                                    <!-- Product price-->
-                                    $120.00 - $280.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="img/iphone-15.png" alt="...">
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Special Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$20.00</span>
-                                    $18.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="img/iphone17.jpg" alt="...">
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Iphone 17</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    $40.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
+                    <div class="card-footer bg-transparent text-center">
+                        <a class="btn btn-outline-dark" href="detail.html">
+                            View options
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
+            <!-- ITEM 2 -->
+            <div class="col mb-5 product-item" data-price="18">
+                <div class="card h-100">
 
-    <script src="asset/bootstrap/js/bootstrap.min.js"></script> 
+                    <img class="card-img-top" src="img/xiaomi.png">
+
+                    <div class="card-body p-4 text-center">
+                        <h5 class="fw-bolder">Xiaomi</h5>
+                        $18.00
+                    </div>
+                    <div class="card-footer bg-transparent text-center">
+                        <a class="btn btn-outline-dark" href="#">
+                            View options
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- ITEM 3 -->
+            <div class="col mb-5 product-item" data-price="25">
+                <div class="card h-100">
+                    <img class="card-img-top" src="img/samsung-s24.png">
+                    <div class="card-body p-4 text-center">
+                        <h5 class="fw-bolder">Samsung S24</h5>
+                        $25.00
+                    </div>
+                    <div class="card-footer bg-transparent text-center">
+                        <a class="btn btn-outline-dark" href="#">
+                            View options
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- ITEM 4 -->
+            <div class="col mb-5 product-item" data-price="120">
+                <div class="card h-100">
+                    <img class="card-img-top" src="img/iphone17.jpg">
+                    <div class="card-body p-4 text-center">
+                        <h5 class="fw-bolder">Iphone 17</h5>
+                        $120.00
+                    </div>
+                    <div class="card-footer bg-transparent text-center">
+                        <a class="btn btn-outline-dark" href="#">
+                            View options
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SORT JS -->
+<script>
+document.getElementById("sortPrice").addEventListener("change", function () {
+    const value = this.value;
+    const container = document.querySelector(".row-cols-xl-4");
+    const items = Array.from(container.querySelectorAll(".product-item"));
+    items.sort((a, b) => {
+        const priceA = parseFloat(a.dataset.price);
+        const priceB = parseFloat(b.dataset.price);
+        if (value === "asc") return priceA - priceB;
+        if (value === "desc") return priceB - priceA;
+        return 0;
+    });
+    items.forEach(item => container.appendChild(item));
+});
+</script>
+<script src="asset/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
