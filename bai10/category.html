@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Phone Store</title>
@@ -19,12 +20,14 @@
             display: flex;
             align-items: center;
         }
+
         .hero-box {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px);
             border-radius: 20px;
             color: white;
         }
+
         .card-img-top {
             height: 250px;
             object-fit: contain;
@@ -32,29 +35,30 @@
         }
     </style>
 </head>
+
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="index.html">
                 Phone Store
             </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">
-                            About
-                        </a>
+                        <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">
-                            Contact
-                        </a>
+                        <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
+
                 <form class="d-flex" onsubmit="event.preventDefault();
                   window.location.href='cart.html';">
                     <button class="btn btn-outline-dark" type="submit">
@@ -67,12 +71,12 @@
             </div>
         </div>
     </nav>
+
+    <!-- HERO -->
     <header class="hero-header py-5">
         <div class="container px-lg-5">
             <div class="hero-box p-4 p-lg-5 text-center">
-                <h1 class="display-5 fw-bold">
-                    Iphone 15 Pro Max
-                </h1>
+                <h1 class="display-5 fw-bold">Iphone 15 Pro Max</h1>
                 <p class="fs-4">
                     Siêu phẩm flagship với thiết kế sang trọng,
                     camera AI và hiệu năng mạnh mẽ.
@@ -83,163 +87,132 @@
             </div>
         </div>
     </header>
+
+    <!-- SORT -->
     <div class="container mt-4">
         <div class="d-flex justify-content-end">
             <select id="sortPrice" class="form-select" style="width:200px;">
-                <option value="default">
-                    Price
-                </option>
-                <option value="asc">
-                    Price: Low → High
-                </option>
-                <option value="desc">
-                    Price: High → Low
-                </option>
+                <option value="default">Price</option>
+                <option value="asc">Price: Low → High</option>
+                <option value="desc">Price: High → Low</option>
             </select>
         </div>
     </div>
+
+    <!-- PRODUCT -->
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                <!-- ITEM 1 -->
                 <div class="col mb-5 product-item" data-price="29990000">
                     <div class="card h-100">
                         <img class="card-img-top" src="img/iphone-15.png">
+
                         <div class="card-body p-4 text-center">
-                            <h5 class="fw-bolder">
-                                Iphone 15
-                            </h5>
+                            <h5 class="fw-bolder">Iphone 15</h5>
                             29.990.000đ
                         </div>
+
                         <div class="card-footer bg-transparent border-top-0 text-center">
-                            <button class="btn btn-dark add-to-cart" data-name="Iphone 15" data-price="29990000"
+                            <!-- FIX DETAIL -->
+                            <a class="btn btn-primary mb-2" href="detail.html?id=1">
+                                Detail
+                            </a>
+
+                            <button class="btn btn-dark add-to-cart"
+                                data-name="Iphone 15"
+                                data-price="29990000"
                                 data-image="img/iphone-15.png">
                                 Add To Cart
                             </button>
                         </div>
                     </div>
                 </div>
+
+                <!-- ITEM 2 -->
                 <div class="col mb-5 product-item" data-price="26990000">
                     <div class="card h-100">
                         <img class="card-img-top" src="img/xiaomi.png">
+
                         <div class="card-body p-4 text-center">
-                            <h5 class="fw-bolder">
-                                Xiaomi
-                            </h5>
+                            <h5 class="fw-bolder">Xiaomi</h5>
                             26.990.000đ
                         </div>
+
                         <div class="card-footer bg-transparent border-top-0 text-center">
-                            <button class="btn btn-dark add-to-cart" data-name="Xiaomi" data-price="26990000"
+                            <!-- FIX DETAIL -->
+                            <a class="btn btn-primary mb-2" href="detail.html?id=2">
+                                Detail
+                            </a>
+
+                            <button class="btn btn-dark add-to-cart"
+                                data-name="Xiaomi"
+                                data-price="26990000"
                                 data-image="img/xiaomi.png">
                                 Add To Cart
                             </button>
                         </div>
                     </div>
                 </div>
+
+                <!-- ITEM 3 -->
                 <div class="col mb-5 product-item" data-price="21990000">
                     <div class="card h-100">
                         <img class="card-img-top" src="img/samsung-s24.png">
+
                         <div class="card-body p-4 text-center">
-                            <h5 class="fw-bolder">
-                                Samsung S24
-                            </h5>
+                            <h5 class="fw-bolder">Samsung S24</h5>
                             21.990.000đ
                         </div>
-                        <div class="card-footer bg-transparent border-top-0 text-center">
-                            <button class="btn btn-dark add-to-cart" data-name="Samsung S24" data-price="21990000"
-                                data-image="img/samsung-s24.png">
 
+                        <div class="card-footer bg-transparent border-top-0 text-center">
+                            <!-- FIX DETAIL -->
+                            <a class="btn btn-primary mb-2" href="detail.html?id=3">
+                                Detail
+                            </a>
+
+                            <button class="btn btn-dark add-to-cart"
+                                data-name="Samsung S24"
+                                data-price="21990000"
+                                data-image="img/samsung-s24.png">
                                 Add To Cart
                             </button>
                         </div>
                     </div>
                 </div>
+
+                <!-- ITEM 4 -->
                 <div class="col mb-5 product-item" data-price="21990000">
                     <div class="card h-100">
                         <img class="card-img-top" src="img/iphone17.jpg">
+
                         <div class="card-body p-4 text-center">
-                            <h5 class="fw-bolder">
-                                Iphone 17
-                            </h5>
+                            <h5 class="fw-bolder">Iphone 17</h5>
                             21.990.000đ
                         </div>
+
                         <div class="card-footer bg-transparent border-top-0 text-center">
-                            <button class="btn btn-dark add-to-cart" data-name="Iphone 17" data-price="21990000"
+                            <!-- FIX DETAIL -->
+                            <a class="btn btn-primary mb-2" href="detail.html?id=4">
+                                Detail
+                            </a>
+
+                            <button class="btn btn-dark add-to-cart"
+                                data-name="Iphone 17"
+                                data-price="21990000"
                                 data-image="img/iphone17.jpg">
                                 Add To Cart
                             </button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
-    <script>
-        document.getElementById("sortPrice")
-            .addEventListener("change", function () {
-                const value = this.value;
-                const container =
-                    document.querySelector(".row-cols-xl-4");
-                const items =
-                    Array.from(container.querySelectorAll(".product-item"));
-                items.sort((a, b) => {
-                    const priceA =
-                        parseFloat(a.dataset.price);
-                    const priceB =
-                        parseFloat(b.dataset.price);
-                    if (value === "asc") {
-                        return priceA - priceB;
-                    }
-                    if (value === "desc") {
-                        return priceB - priceA;
-                    }
-                    return 0;
-                });
-                items.forEach(item => {
-                    container.appendChild(item);
-                });
-            });
-    </script>
-    <script>
-        const buttons =
-            document.querySelectorAll(".add-to-cart");
-        buttons.forEach(button => {
-            button.addEventListener("click", function () {
-                const product = {
-                    name: this.dataset.name,
-                    price: this.dataset.price,
-                    image: this.dataset.image,
-                    quantity: 1
-                };
-                let cart =
-                    JSON.parse(localStorage.getItem("cart")) || [];
-                const existingProduct =
-                    cart.find(item => item.name === product.name);
-                if (existingProduct) {
-                    existingProduct.quantity += 1;
-                } else {
-                    cart.push(product);
-                }
-                localStorage.setItem(
-                    "cart",
-                    JSON.stringify(cart)
-                );
-                updateCartCount();
-            });
-        });
-    </script>
-    <script>
-        function updateCartCount() {
-            let cart =
-                JSON.parse(localStorage.getItem("cart")) || [];
-            let totalQuantity = 0;
-            cart.forEach(item => {
-                totalQuantity += item.quantity;
-            });
-            document.getElementById("cart-count")
-                .innerText = totalQuantity;
-        }
-        updateCartCount();
-    </script>
+
     <script src="asset/bootstrap/js/bootstrap.min.js"></script>
-</body> 
+</body>
+
 </html>

@@ -1,17 +1,28 @@
 [
-    {
-        "name": "iphone 15",
-        "price": 9000,
-        "img": "img/iphone15.jpg"
-    },
-    {
-        "name": "Samsung S24",
-        "price": 6000,
-        "img": "img/samsung-s24.png"
-    },
-    {
-        "name": "Xiaomi 14",
-        "price": 5000,
-        "img": "img/xiaomi14.png"
-    }
+  {
+    "id": 1,
+    "name": "Iphone 15",
+    "price": 29990000,
+    "img": "img/iphone-15.png",
+    "screen": "6.1 inch OLED",
+    "chip": "A16 Bionic",
+    "ram": "6GB",
+    "storage": "128GB",
+    "camera": "48MP",
+    "battery": "3349 mAh",
+    "os": "iOS 17"
+  },
+  {
+    "id": 2,
+    "name": "Xiaomi",
+    "price": 26990000,
+    "img": "img/xiaomi.png",
+    "screen": "6.67 inch AMOLED",
+    "chip": "Snapdragon 8 Gen 3",
+    "ram": "12GB",
+    "storage": "256GB",
+    "camera": "50MP",
+    "battery": "5000 mAh",
+    "os": "Android"
+  }
 ]
