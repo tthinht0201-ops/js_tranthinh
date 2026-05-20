@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "iphone 13",
+        "price": 9000,
+        "img": "img/iphone-15.png"
+    },
+    {
+        "id": 2,
+        "name": "iphone 15",
+        "price": 9000,
+        "img": ""
+    },
+    {
+        "id": 3,
+        "name": "Samsung S24",
+        "price": 6000,
+        "img": ""
+    },
+    {
+        "id": 4,
+        "name": "Xiaomi 14",
+        "price": 5000,
+        "img": ""
+    },
+    {
+        "id": 5,
+        "name": "Oppo Find X",
+        "price": 9000,
+        "img": ""
+    },
+    {
+        "id": 6,
+        "name": "Xiaomi 15",
+        "price": 11000,
+        "img": ""
+    }
+]
