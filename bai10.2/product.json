@@ -5,7 +5,7 @@
         "description": "Mô tả",
         "brand": "apple",
         "price": 9000,
-        "thumbnail": "asset/img/products/iphone13.jpg"
+        "thumbnail": "asset/img/products/iphone-15.jpg"
     },
     {
         "id": 2,
@@ -13,7 +13,7 @@
         "description": "Mô tả",
         "brand": "apple",
         "price": 9000,
-        "thumbnail": "asset/img/products/iphone15-1.jpg"
+        "thumbnail": "asset/img/products/iphone17.jpg"
     },
     {
         "id": 3,
@@ -29,7 +29,7 @@
         "description": "Mô tả",
         "brand": "xiaomi",
         "price": 5000,
-        "thumbnail": "asset/img/products/xiaomi14.png"
+        "thumbnail": "asset/img/products/xiaomi.png"
     },
     {
         "id": 5,
@@ -37,7 +37,7 @@
         "description": "Mô tả",
         "brand": "oppo",
         "price": 9000,
-        "thumbnail": "asset/img/products/oppo-find-x.jpg"
+        "thumbnail": "asset/img/products/xiaomi.png"
     },
     {
         "id": 6,
@@ -45,6 +45,6 @@
         "description": "Mô tả",
         "brand": "xiaomi",
         "price": 11000,
-        "thumbnail": "asset/img/products/xiaomi15.png"
+        "thumbnail": "asset/img/products/iphone-15.jpg"
     }
 ]
