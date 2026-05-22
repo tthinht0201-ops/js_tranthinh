@@ -2,6 +2,7 @@
 <head>
     <title>JS</title>
     <link rel="stylesheet" type="text/css" href="asset/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/style.css">
 </head>
 <body>
 
@@ -13,12 +14,18 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Brand
+                        </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Products</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                            <!-- <li><a class="dropdown-item" href="#!">All Products</a></li>
+                            <li><hr class="dropdown-divider"></li> -->
+                            <li><a class="dropdown-item" href="category.html?brand=apple">Apple</a></li>
+                            <li><a class="dropdown-item" href="category.html?brand=samsung">Samsung</a></li>
+                            <li><a class="dropdown-item" href="category.html?brand=oppo">OPPO</a></li>
+                            <li><a class="dropdown-item" href="category.html?brand=realme">Realme</a></li>
+                            <li><a class="dropdown-item" href="category.html?brand=vivo">Vivo</a></li>
+                            <li><a class="dropdown-item" href="category.html?brand=xiaomi">Xiaomi</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -42,7 +49,7 @@
                     <!-- Post header-->
                     <header class="mb-4">
                         <!-- Post title-->
-                        <h1 class="fw-bolder mb-1">Samsung Galaxy A17</h1>
+                        <h1 id="detail-product-name" class="fw-bolder mb-1">Samsung Galaxy A17</h1>
                         <!-- Post meta content-->
                         <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
                         <!-- Post categories-->
@@ -55,7 +62,7 @@
                     
                     <!-- Post content-->
                     <section class="mb-5">
-                        <p class="fs-5 mb-4"><strong>Samsung Galaxy A17 5G</strong> là mẫu smartphone tầm trung nổi bật với sức mạnh từ chipset Exynos 1330 cùng công nghệ chống rung OIS trên camera chính 50MP, giúp tối ưu hiệu năng và chất lượng ảnh chụp. Thiết bị sở hữu viên pin 5.000mAh bền bỉ kèm sạc nhanh 25W, đáp ứng trọn vẹn nhu cầu sử dụng cả ngày dài. Với thiết kế tinh tế gồm 3 gam màu thời thượng, A17 5G hứa hẹn là lựa chọn hàng đầu trong phân khúc năm 2026.</p>
+                        <p id="detail-product-desc" class="fs-5 mb-4"></p>
 
                         <h2 class="fw-bolder mb-4 mt-5">Thông số kỹ thuật</h2>
                         
@@ -188,15 +195,16 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="category.html">Apple</a></li>
-                                    <li><a href="category.html">Samsung</a></li>
-                                    <li><a href="category.html">OPPO</a></li>
+                                    <li><a href="category.html?brand=apple">Apple</a></li>
+                                    <li><a href="category.html?brand=samsung">Samsung</a></li>
+                                    <li><a href="category.html?brand=oppo">OPPO</a></li>
                                 </ul>
                             </div>
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="category.html">Realme</a></li>
-                                    <li><a href="category.html">Vivo</a></li>
+                                    <li><a href="category.html?brand=realme">Realme</a></li>
+                                    <li><a href="category.html?brand=vivo">Vivo</a></li>
+                                    <li><a href="category.html?brand=xiaomi">Xiaomi</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -262,15 +270,19 @@
         </div>
     </footer>
 
-    <script src="asset/bootstrap/js/bootstrap.min.js"></script>
+    <script src="asset/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="asset/js/script.js"></script>
     <script src="asset/js/cart.js"></script>
 
     <script>
         var products = [];
+        var detailProduct = null;
         var currentIndex = 0;
         var step = 4; // so luong item
         var html = "";
+        
+        let params = new URLSearchParams(document.location.search); // lấy tham số từ URL
+        let idProduct = params.get("id"); // lấy tham số id
 
         window.onload = function() {
             loadProduct();
@@ -284,10 +296,22 @@
             xhr.onload = function() {
                 if (xhr.status == 200) {
                     products = JSON.parse(xhr.responseText);
+
+                    products.forEach(item => {
+                        if (item.id == idProduct) {
+                            detailProduct = item
+                        }
+                    });
+                    renderDetailProduct();
                     renderProductTable();
                 }
             }
             xhr.send();
+        }
+
+        function renderDetailProduct() {
+            document.getElementById("detail-product-name").innerText = detailProduct.name;
+            document.getElementById("detail-product-desc").innerHTML = detailProduct.description;
         }
 
         function renderProductTable() {
@@ -300,10 +324,10 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <img class="card-img-top" src="${product.img}" alt="...">
+                            <img class="card-img-top" src="${product.thumbnail}" alt="...">
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <h5 class="fw-bolder">${product.name}</h5>
+                                    <h5 class="fw-bolder text-hover">${product.name}</h5>
                                     <div class="d-flex justify-content-center small text-warning mb-2">
                                         <div class="bi-star-fill"></div>
                                         <div class="bi-star-fill"></div>

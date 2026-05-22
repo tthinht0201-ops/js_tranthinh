@@ -1,37 +1,37 @@
 <html>
-
 <head>
     <title>JS</title>
     <link rel="stylesheet" type="text/css" href="asset/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/style.css">
 </head>
-
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="index.html">Start Bootstrap</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Brand
+                        </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Products</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                            <!-- <li><a class="dropdown-item" href="#!">All Products</a></li>
+                            <li><hr class="dropdown-divider"></li> -->
+                            <li><a class="dropdown-item" href="category.html?brand=apple">Apple</a></li>
+                            <li><a class="dropdown-item" href="category.html?brand=samsung">Samsung</a></li>
+                            <li><a class="dropdown-item" href="category.html?brand=oppo">OPPO</a></li>
+                            <li><a class="dropdown-item" href="category.html?brand=realme">Realme</a></li>
+                            <li><a class="dropdown-item" href="category.html?brand=vivo">Vivo</a></li>
+                            <li><a class="dropdown-item" href="category.html?brand=xiaomi">Xiaomi</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
                 <form class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit">
+                    <button class="btn btn-outline-dark" type="button" onclick="window.location.href='cart.html'">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
@@ -44,12 +44,12 @@
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Điện thoại Apple</h1>
+                <h1 id="brand-header" class="display-4 fw-bolder">Điện thoại Apple</h1>
                 <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
             </div>
         </div>
     </header>
-
+    
     <div class="container mt-4">
         <h2>Danh sách điện thoại</h2>
         <select class="form-select w-25 mb-3" onchange="sortProducts(this.value)">
@@ -72,9 +72,9 @@
 
     <footer class="py-5 bg-dark">
         <div class="container px-4 px-lg-5">
-            <div class="row" style="color:white !important">
+            <div class="row" style="color:white !important"> 
                 <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
+                    <h5>Section</h5> 
                     <ul class="nav flex-column">
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
@@ -118,26 +118,41 @@
         </div>
     </footer>
 
-    <script src="asset/bootstrap/js/bootstrap.min.js"></script>
+    <script src="asset/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="asset/js/cart.js"></script>
 
     <script>
         var products = [];
         var currentIndex = 0;
         var step = 4; // so luong item
         var html = "";
+        var indexRender = 0;
 
+        let params = new URLSearchParams(document.location.search); // lấy tham số từ URL
+        let brand = params.get("brand"); // lấy tham số brand
+
+        document.getElementById("brand-header").innerHTML = "ĐIỆN THOẠI " + brand.toUpperCase();
+        
         // load dữ liệu khi mở trang
-        window.onload = function () {
+        window.onload = function() {
             loadProducts();
+            updateCartCount();
         }
 
         function loadProducts() {
             let xhr = new XMLHttpRequest();
             xhr.open("GET", "products.json", true);
 
-            xhr.onload = function () {
+            xhr.onload = function() {
                 if (xhr.status == 200) {
-                    products = JSON.parse(xhr.responseText);
+                    listProduct = JSON.parse(xhr.responseText);
+
+                    listProduct.forEach(item => {
+                        if (item.brand == brand) {
+                            products.push(item)
+                        }
+                    });
+
                     renderProductTable(products);
                 }
             };
@@ -149,15 +164,15 @@
 
             let list = products.slice(currentIndex, nextIndex);
 
-            list.forEach(product => {
+            list.forEach((product, index) => {
                 html += `
                     <div class="col mb-5">
                         <div class="card h-100">
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <img class="card-img-top" src="${product.img}" alt="...">
+                            <img class="card-img-top" src="${product.thumbnail}" alt="...">
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <h5 class="fw-bolder">${product.name}</h5>
+                                    <h5 class="fw-bolder text-hover">${product.name}</h5>
                                     <div class="d-flex justify-content-center small text-warning mb-2">
                                         <div class="bi-star-fill"></div>
                                         <div class="bi-star-fill"></div>
@@ -169,11 +184,12 @@
                                 </div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" onclick="addToCart(${indexRender}, 1)">Add to cart</a></div>
                             </div>
                         </div>
                     </div>
                 `;
+                indexRender += 1;
             })
 
             document.getElementById("product-list").innerHTML = html;
@@ -182,9 +198,9 @@
 
         function sortProducts(type) {
             if (type == 'asc') {
-                products.sort((a, b) => a.price - b.price);
+                products.sort((a,b) => a.price - b.price);
             } else {
-                products.sort((a, b) => b.price - a.price);
+                products.sort((a,b) => b.price - a.price);
             }
             renderProductTable(products);
         }
@@ -213,5 +229,4 @@
 
     </script>
 </body>
-
 </html>
