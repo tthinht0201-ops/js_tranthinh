@@ -94,13 +94,14 @@
         </div>
     </div>
 
-    <!-- ✅ IMPORT DATA JS (KHÔNG DÙNG FETCH) -->
-    <script src="product.js"></script>
-
     <script>
-        function getProductById() {
+        async function getProductById() {
 
             const id = Number(new URLSearchParams(window.location.search).get("id"));
+
+            // đọc product.json
+            const response = await fetch("products.json");
+            const products = await response.json();
 
             const product = products.find(p => p.id === id);
 

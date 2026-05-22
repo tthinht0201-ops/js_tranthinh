@@ -1,0 +1,111 @@
+<html>
+<head>
+    <title>JS</title>
+    <link rel="stylesheet" type="text/css" href="asset/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">Phone Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Shop
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="category.html">
+                                    All Products
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="category.html">
+                                    Popular Items
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="category.html">
+                                    New Arrivals
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+
+                <form class="d-flex" onsubmit="event.preventDefault(); window.location.href='cart.html';">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">
+                            0
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center text-center">
+            <h2 class="fw-bolder mb-4">Thanh toán thành công</h2>
+            <div id="payment-info" class="col-lg-6 text-start"></div>
+        </div>
+    </div>
+    <footer class="py-5 bg-dark">
+        <div class="container px-4 px-lg-5">
+            <div class="row" style="color:white !important"> 
+                <div class="col-6 col-md-2 mb-3"> 
+                    <h5>Section</h5> 
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const data = JSON.parse(localStorage.getItem("paymentInfo"));
+        const box = document.getElementById("payment-info");
+        if (!data) {
+            box.innerHTML = "<p>Không có dữ liệu thanh toán.</p>";
+        } else {
+            box.innerHTML = `
+                <div class="card p-4 shadow-sm">
+                    <h5>Thông tin khách hàng</h5>
+                    <hr>
+                    <p><b>Họ tên:</b> ${data.fullname || ""}</p>
+                    <p><b>Email:</b> ${data.email || ""}</p>
+                    <p><b>Địa chỉ:</b> ${data.address || ""}</p>
+                    <p><b>Số điện thoại:</b> ${data.phone || ""}</p>
+                    <p><b>Ghi chú:</b> ${data.note || ""}</p>
+                </div>
+            `;
+        }
+        localStorage.removeItem("paymentInfo");
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
