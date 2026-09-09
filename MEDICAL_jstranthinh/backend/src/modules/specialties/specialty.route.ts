@@ -29,7 +29,7 @@ specialtyRouter.get(
 );
 
 /*
- * Admin / Receptionist routes
+ * Admin routes
  */
 specialtyRouter.post(
   "/",

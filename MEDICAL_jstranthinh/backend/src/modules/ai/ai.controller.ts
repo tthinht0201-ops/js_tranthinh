@@ -19,7 +19,7 @@ export const suggestSpecialtyController = async (req: Request, res: Response) =>
     res.status(200).json({ success: true, data });
   } catch (error) {
     if (error instanceof Error && error.message === "NO_SPECIALTIES_AVAILABLE") {
-      res.status(409).json({ success: false, message: "Hệ thống chưa có chuyên khoa đang hoạt động" });
+      res.status(409).json({ success: false, message: "Hệ thống chưa có chuyên khoa  hoạt động" });
       return;
     }
     throw error;

@@ -27,7 +27,6 @@ app.use(helmet());
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Requests from tools/server-to-server clients may not send Origin.
       if (!origin) {
         callback(null, true);
         return;

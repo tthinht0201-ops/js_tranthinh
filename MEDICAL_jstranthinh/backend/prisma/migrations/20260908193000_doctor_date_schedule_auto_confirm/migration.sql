@@ -25,7 +25,6 @@ ADD CONSTRAINT "DoctorDateSchedule_doctorId_fkey"
 FOREIGN KEY ("doctorId") REFERENCES "DoctorProfile"("id")
 ON DELETE CASCADE ON UPDATE CASCADE;
 
--- Quy trình mới: bệnh nhân đặt lịch được xác nhận ngay.
 UPDATE "Appointment"
 SET "status" = 'CONFIRMED'
 WHERE "status" = 'PENDING';

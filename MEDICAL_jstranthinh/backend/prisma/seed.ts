@@ -55,9 +55,7 @@ const upsertUser = async (params: {
 
 const main = async () => {
   /*
-   * ============================================================
    * ADMIN
-   * ============================================================
    */
 
   await upsertUser({
@@ -66,17 +64,13 @@ const main = async () => {
     role: UserRole.ADMIN,
   });
 
-  /*
-   * ============================================================
-   * RECEPTIONIST
-   * ============================================================
-   */
 
-  await upsertUser({
-    email: "reception@medical.local",
-    password: "Reception@123456",
-    role: UserRole.RECEPTIONIST,
-  });
+
+  /*  await upsertUser({
+     email: "reception@medical.local",
+     password: "Reception@123456",
+     role: UserRole.RECEPTIONIST,
+   }); */
 
   /*
    * ============================================================
@@ -143,26 +137,6 @@ const main = async () => {
     specialties.set(name, specialty.id);
   }
 
-  /*
-   * ============================================================
-   * DOCTORS
-   * ============================================================
-   *
-   * Mỗi chuyên khoa có 2 bác sĩ.
-   *
-   * Bác sĩ 1:
-   * 08:00 - 12:00
-   *
-   * Bác sĩ 2:
-   * 13:00 - 17:00
-   *
-   * Thứ 2 -> Thứ 6
-   * Slot: 30 phút
-   *
-   * Tất cả dùng password:
-   * Doctor@123456
-   * ============================================================
-   */
 
   const doctorSeeds = [
     /*
@@ -321,11 +295,6 @@ const main = async () => {
       bio: "Bác sĩ Tiêu hóa, có kinh nghiệm quản lý các bệnh lý tiêu hóa thường gặp.",
     },
 
-    /*
-     * --------------------------------------------------------
-     * HÔ HẤP
-     * --------------------------------------------------------
-     */
 
     {
       specialty: "Hô hấp",
@@ -347,11 +316,6 @@ const main = async () => {
       bio: "Bác sĩ Hô hấp, tư vấn và theo dõi các bệnh lý đường hô hấp thường gặp.",
     },
 
-    /*
-     * --------------------------------------------------------
-     * TÂM LÝ
-     * --------------------------------------------------------
-     */
 
     {
       specialty: "Tâm lý",
@@ -374,11 +338,6 @@ const main = async () => {
     },
   ] as const;
 
-  /*
-   * ============================================================
-   * WORK DAYS
-   * ============================================================
-   */
 
   const workDays = [
     DayOfWeek.MONDAY,
@@ -388,11 +347,6 @@ const main = async () => {
     DayOfWeek.FRIDAY,
   ];
 
-  /*
-   * ============================================================
-   * CREATE DOCTORS + SCHEDULES
-   * ============================================================
-   */
 
   for (const doctorSeed of doctorSeeds) {
     const specialtyId = specialties.get(
@@ -405,9 +359,6 @@ const main = async () => {
       );
     }
 
-    /*
-     * Tạo / cập nhật User của bác sĩ.
-     */
 
     const doctorUser = await upsertUser({
       email: doctorSeed.email,
@@ -415,9 +366,6 @@ const main = async () => {
       role: UserRole.DOCTOR,
     });
 
-    /*
-     * Tạo / cập nhật DoctorProfile.
-     */
 
     const doctor =
       await prisma.doctorProfile.upsert({
@@ -445,26 +393,12 @@ const main = async () => {
         },
       });
 
-    /*
-     * Xóa lịch seed cũ của bác sĩ.
-     *
-     * Nhờ vậy nếu chạy seed nhiều lần
-     * sẽ không bị trùng lịch.
-     */
-
     await prisma.doctorSchedule.deleteMany({
       where: {
         doctorId: doctor.id,
       },
     });
 
-    /*
-     * Bác sĩ thứ nhất:
-     * 08:00 - 12:00
-     *
-     * Bác sĩ thứ hai:
-     * 13:00 - 17:00
-     */
 
     const startMinute =
       doctorSeed.shift === "MORNING"
@@ -476,9 +410,6 @@ const main = async () => {
         ? 12 * 60
         : 17 * 60;
 
-    /*
-     * Tạo lịch từ Thứ 2 -> Thứ 6.
-     */
 
     await prisma.doctorSchedule.createMany({
       data: workDays.map((dayOfWeek) => ({
@@ -492,11 +423,6 @@ const main = async () => {
     });
   }
 
-  /*
-   * ============================================================
-   * TEST PATIENT
-   * ============================================================
-   */
 
   const patientUser = await upsertUser({
     email: "patient@medical.local",
@@ -526,12 +452,6 @@ const main = async () => {
       ),
     },
   });
-
-  /*
-   * ============================================================
-   * CONSOLE
-   * ============================================================
-   */
 
   console.log("");
   console.log("====================================");

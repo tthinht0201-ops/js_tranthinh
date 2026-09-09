@@ -101,9 +101,8 @@ const currentUserId = (req: Request): string => {
   return req.user.userId;
 };
 
-/* -------------------------------------------------------------------------- */
-/* LỊCH TUẦN                                                                  */
-/* -------------------------------------------------------------------------- */
+/* LỊCH TUẦN */
+
 
 export const getMySchedulesController = async (req: Request, res: Response) => {
   const data = await getMySchedules(currentUserId(req));
@@ -195,9 +194,7 @@ export const deleteMyScheduleController = async (
   }
 };
 
-/* -------------------------------------------------------------------------- */
-/* LỊCH THEO NGÀY CỤ THỂ                                                      */
-/* -------------------------------------------------------------------------- */
+/* LỊCH THEO NGÀY CỤ THỂ */
 
 export const getMyDateSchedulesController = async (
   req: Request,
@@ -294,9 +291,7 @@ export const deleteMyDateScheduleController = async (
   }
 };
 
-/* -------------------------------------------------------------------------- */
-/* BLOCKED TIME                                                               */
-/* -------------------------------------------------------------------------- */
+/* BLOCKED TIME*/
 
 export const getMyBlockedTimesController = async (
   req: Request,
@@ -401,9 +396,8 @@ export const deleteMyBlockedTimeController = async (
   }
 };
 
-/* -------------------------------------------------------------------------- */
-/* SLOT TRỐNG                                                                 */
-/* -------------------------------------------------------------------------- */
+
+/* SLOT TRỐNG */
 
 export const getAvailableSlotsController = async (
   req: Request,

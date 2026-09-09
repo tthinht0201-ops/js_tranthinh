@@ -219,4 +219,4 @@ CORS_ORIGIN=https://medical.example.com
 
 ## Ghi chú bảo mật auth
 
-Bản hiện tại vẫn dùng Bearer JWT lưu `localStorage`, phù hợp giai đoạn đồ án/test. Nếu triển khai với dữ liệu bệnh nhân thật, nên nâng cấp sang HttpOnly + Secure cookie và cơ chế CSRF phù hợp trước khi vận hành chính thức.
+ hiện tại vẫn dùng Bearer JWT lưu `localStorage`.

@@ -65,8 +65,6 @@ const findValidSchedule = async (
   const dayOfWeek = getVietnamDayOfWeek(startAt);
   const startMinute = getVietnamMinuteOfDay(startAt);
 
-  // Lịch theo ngày cụ thể có độ ưu tiên cao hơn lịch tuần.
-  // Nếu ngày đó đã có ít nhất một DoctorDateSchedule thì không fallback về lịch tuần.
   const dateSchedules: ScheduleWindow[] =
     await tx.doctorDateSchedule.findMany({
     where: {

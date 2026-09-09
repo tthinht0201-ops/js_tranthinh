@@ -34,10 +34,7 @@ export const AdminAppointmentsPage = () => {
 
   const [rescheduleStart, setRescheduleStart] = useState("");
 
-  /*
-   * ============================================================
-   * LOAD DOCTORS
-   * ============================================================
+  /* LOAD DOCTORS
    */
 
   const doctorsQuery = useQuery({
@@ -51,10 +48,7 @@ export const AdminAppointmentsPage = () => {
     },
   });
 
-  /*
-   * ============================================================
-   * LOAD APPOINTMENTS
-   * ============================================================
+  /* LOAD APPOINTMENTS
    */
 
   const query = useQuery({
@@ -82,20 +76,7 @@ export const AdminAppointmentsPage = () => {
     },
   });
 
-  /*
-   * ============================================================
-   * CONFIRM / CANCEL APPOINTMENT
-   * ============================================================
-   *
-   * cancellationSource:
-   *
-   * ADMIN:
-   * Admin/lễ tân chủ động hủy lịch.
-   *
-   * DOCTOR:
-   * Admin/lễ tân là người thao tác hủy,
-   * nhưng nguyên nhân thực tế đến từ bác sĩ.
-   *
+  /* CONFIRM / CANCEL APPOINTMENT
    */
 
   const statusMutation = useMutation({
@@ -143,23 +124,7 @@ export const AdminAppointmentsPage = () => {
     },
   });
 
-  /*
-   * ============================================================
-   * RESCHEDULE APPOINTMENT
-   * ============================================================
-   *
-   * Dùng khi bác sĩ tạo BlockedTime đè lên
-   * appointment đã được xác nhận (hoặc dữ liệu PENDING cũ).
-   *
-   * Appointment lúc này có trạng thái:
-   *
-   * NEEDS_RESCHEDULE
-   *
-   * Sau khi Admin/lễ tân liên hệ bệnh nhân
-   * và chọn thời gian mới:
-   *
-   * NEEDS_RESCHEDULE -> CONFIRMED
-   *
+  /* RESCHEDULE APPOINTMENT
    */
 
   const rescheduleMutation = useMutation({
@@ -170,12 +135,6 @@ export const AdminAppointmentsPage = () => {
       id: string;
       startAt: string;
     }) => {
-      /*
-       * datetime-local trả về giờ local của browser.
-       *
-       * new Date(...).toISOString()
-       * chuyển sang UTC trước khi gửi backend.
-       */
       const newStartAt = new Date(startAt);
 
       if (Number.isNaN(newStartAt.getTime())) {
@@ -203,11 +162,6 @@ export const AdminAppointmentsPage = () => {
       await queryClient.invalidateQueries({
         queryKey: ["appointment-statistics"],
       });
-
-      /*
-       * Slot mới / slot cũ có thể đã thay đổi.
-       * Invalidate các query liên quan đến available slots.
-       */
       await queryClient.invalidateQueries({
         queryKey: ["available-slots"],
       });
@@ -218,10 +172,7 @@ export const AdminAppointmentsPage = () => {
     },
   });
 
-  /*
-   * ============================================================
-   * OPEN RESCHEDULE FORM
-   * ============================================================
+  /* OPEN RESCHEDULE FORM
    */
 
   const openRescheduleForm = (
@@ -233,31 +184,15 @@ export const AdminAppointmentsPage = () => {
       appointment.id,
     );
 
-    /*
-     * Có thể để trống để Admin chủ động chọn.
-     *
-     * Không sử dụng thời gian cũ vì thời gian
-     * đó đang bị BlockedTime của bác sĩ chặn.
-     */
     setRescheduleStart("");
   };
 
-  /*
-   * ============================================================
-   * CLOSE RESCHEDULE FORM
-   * ============================================================
-   */
 
   const closeRescheduleForm = () => {
     setRescheduleAppointmentId("");
     setRescheduleStart("");
   };
 
-  /*
-   * ============================================================
-   * CANCELLATION DESCRIPTION
-   * ============================================================
-   */
 
   const getCancellationDescription = (
     appointment: Appointment,
@@ -285,10 +220,7 @@ export const AdminAppointmentsPage = () => {
 
   return (
     <section className="section-block page-topless">
-      {/* ===================================================== */}
       {/* HEADER */}
-      {/* ===================================================== */}
-
       <div className="section-heading">
         <div>
           <span className="eyebrow">
@@ -299,9 +231,7 @@ export const AdminAppointmentsPage = () => {
         </div>
       </div>
 
-      {/* ===================================================== */}
       {/* FILTER */}
-      {/* ===================================================== */}
 
       <div className="filter-bar filter-bar-3">
         <input
@@ -363,10 +293,7 @@ export const AdminAppointmentsPage = () => {
           )}
         </select>
       </div>
-
-      {/* ===================================================== */}
       {/* ERROR */}
-      {/* ===================================================== */}
 
       {error && (
         <div className="alert alert-error">
@@ -374,19 +301,14 @@ export const AdminAppointmentsPage = () => {
         </div>
       )}
 
-      {/* ===================================================== */}
       {/* LOADING */}
-      {/* ===================================================== */}
 
       {query.isLoading ? (
         <div className="page-state">
           Đang tải lịch hẹn...
         </div>
       ) : (
-        /*
-         * =====================================================
-         * APPOINTMENT TABLE
-         * =====================================================
+        /*APPOINTMENT TABLE
          */
         <div className="table-card">
           <table className="data-table">
@@ -404,9 +326,7 @@ export const AdminAppointmentsPage = () => {
               {query.data?.map(
                 (appointment) => (
                   <tr key={appointment.id}>
-                    {/* ======================================= */}
                     {/* TIME */}
-                    {/* ======================================= */}
 
                     <td>
                       <strong>
@@ -437,9 +357,7 @@ export const AdminAppointmentsPage = () => {
                       )}
                     </td>
 
-                    {/* ======================================= */}
                     {/* PATIENT */}
-                    {/* ======================================= */}
 
                     <td>
                       {
@@ -457,9 +375,7 @@ export const AdminAppointmentsPage = () => {
                       </span>
                     </td>
 
-                    {/* ======================================= */}
                     {/* DOCTOR */}
-                    {/* ======================================= */}
 
                     <td>
                       {
@@ -477,9 +393,7 @@ export const AdminAppointmentsPage = () => {
                       </span>
                     </td>
 
-                    {/* ======================================= */}
                     {/* STATUS */}
-                    {/* ======================================= */}
 
                     <td>
                       <span
@@ -532,14 +446,11 @@ export const AdminAppointmentsPage = () => {
                       )}
                     </td>
 
-                    {/* ======================================= */}
                     {/* ACTIONS */}
-                    {/* ======================================= */}
 
                     <td className="table-actions">
-                      {/* ------------------------------------- */}
+
                       {/* PENDING */}
-                      {/* ------------------------------------- */}
 
                       {appointment.status ===
                         "PENDING" && (
@@ -565,9 +476,7 @@ export const AdminAppointmentsPage = () => {
                         </>
                       )}
 
-                      {/* ------------------------------------- */}
                       {/* CONFIRMED */}
-                      {/* ------------------------------------- */}
 
                       {appointment.status ===
                         "CONFIRMED" && (
@@ -582,13 +491,6 @@ export const AdminAppointmentsPage = () => {
                                 id: appointment.id,
                                 nextStatus:
                                   "CANCELLED",
-
-                                /*
-                                 * Appointment vẫn bình thường.
-                                 *
-                                 * Nếu Admin chủ động hủy thì
-                                 * nguồn nguyên nhân là ADMIN.
-                                 */
                                 cancellationSource:
                                   "ADMIN",
 
@@ -603,9 +505,7 @@ export const AdminAppointmentsPage = () => {
                         </button>
                       )}
 
-                      {/* ------------------------------------- */}
                       {/* NEEDS_RESCHEDULE */}
-                      {/* ------------------------------------- */}
 
                       {appointment.status ===
                         "NEEDS_RESCHEDULE" && (
@@ -636,15 +536,6 @@ export const AdminAppointmentsPage = () => {
                                   nextStatus:
                                     "CANCELLED",
 
-                                  /*
-                                   * QUAN TRỌNG:
-                                   *
-                                   * Người thao tác:
-                                   * Admin / Receptionist
-                                   *
-                                   * Nhưng nguyên nhân:
-                                   * Doctor
-                                   */
                                   cancellationSource:
                                     "DOCTOR",
                                 },
@@ -654,9 +545,9 @@ export const AdminAppointmentsPage = () => {
                             Hủy do bác sĩ bận
                           </button>
 
-                          {/* ================================= */}
+                      
                           {/* RESCHEDULE FORM */}
-                          {/* ================================= */}
+                        
 
                           {rescheduleAppointmentId ===
                             appointment.id && (
@@ -726,10 +617,7 @@ export const AdminAppointmentsPage = () => {
                   </tr>
                 ),
               )}
-
-              {/* ============================================= */}
               {/* EMPTY */}
-              {/* ============================================= */}
 
               {!query.data?.length && (
                 <tr>

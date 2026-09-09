@@ -85,10 +85,7 @@ const dateScheduleReason = (date: string) => {
   const [year, month, day] = date.split("-");
   return `Bác sĩ đã điều chỉnh lịch làm việc ngày ${day}/${month}/${year}. Phòng khám sẽ liên hệ để hỗ trợ đổi lịch hoặc hủy lịch.`;
 };
-
-/* -------------------------------------------------------------------------- */
-/* LỊCH TUẦN MẶC ĐỊNH                                                        */
-/* -------------------------------------------------------------------------- */
+/* LỊCH TUẦN MẶC ĐỊNH */
 
 const ensureNoScheduleOverlap = async (params: {
   doctorId: string;
@@ -235,9 +232,7 @@ export const deleteMySchedule = async (
   });
 };
 
-/* -------------------------------------------------------------------------- */
-/* LỊCH THEO NGÀY CỤ THỂ - GHI ĐÈ LỊCH TUẦN                                 */
-/* -------------------------------------------------------------------------- */
+/* LỊCH THEO NGÀY CỤ THỂ */
 
 const ensureNoDateScheduleOverlap = async (
   tx: Prisma.TransactionClient,
