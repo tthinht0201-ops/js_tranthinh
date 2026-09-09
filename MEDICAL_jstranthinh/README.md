@@ -9,7 +9,7 @@ Full-stack TypeScript project cho phòng khám tư nhân nhỏ, xây dựng theo
 - Database: PostgreSQL + Prisma Migrate + Prisma Seed.
 - Deploy-ready: Docker/Nginx, Vercel SPA rewrite, environment configuration.
 
-## Luồng nghiệp vụ hiện tại
+## Luồng hiện tại
 
 ### Bệnh nhân
 
@@ -39,7 +39,7 @@ Full-stack TypeScript project cho phòng khám tư nhân nhỏ, xây dựng theo
 - Xử lý `NEEDS_RESCHEDULE`: phối hợp đổi hoặc hủy lịch.
 - Xem thống kê lịch hẹn và bác sĩ được đặt nhiều.
 
-## URL frontend chuẩn hóa
+## URL frontend 
 
 ```text
 PUBLIC
@@ -67,8 +67,6 @@ SYSTEM
 /403                      Không có quyền
 *                         Trang 404
 ```
-
-Các URL cũ `/my-appointments`, `/profile`, `/ai`, `/doctor`, `/admin` vẫn được redirect sang URL mới để không phá bookmark/test cũ.
 
 ## Cây thư mục
 
@@ -177,7 +175,7 @@ npm run build
 
 ## Tài khoản demo
 
-Xem dữ liệu hiện hành trong `backend/prisma/seed.ts`. Các account demo chỉ dành cho local/test, không dùng trên production.
+Xem dữ liệu hiện có trong `backend/prisma/seed.ts`. Các account demo chỉ dành cho local/test, không dùng trên production.
 
 ## Cấu hình môi trường
 
@@ -205,9 +203,6 @@ DATABASE_URL=...
 JWT_SECRET=...
 CORS_ORIGIN=https://medical.example.com
 ```
-
-`CORS_ORIGIN` hỗ trợ nhiều frontend origin, ngăn cách bằng dấu phẩy.
-
 ## Deploy sau khi test ổn
 
 - Vercel frontend: `frontend/vercel.json` đã có SPA rewrite.
