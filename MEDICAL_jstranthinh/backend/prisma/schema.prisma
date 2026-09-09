@@ -1,0 +1,227 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  PATIENT
+  DOCTOR
+  ADMIN
+  RECEPTIONIST
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  NEEDS_RESCHEDULE
+  COMPLETED
+  CANCELLED
+}
+
+enum CancellationSource {
+  PATIENT
+  DOCTOR
+  ADMIN
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String   @unique @db.VarChar(255)
+  passwordHash String   @db.VarChar(255)
+  role         UserRole @default(PATIENT)
+  isActive     Boolean  @default(true)
+
+  patientProfile PatientProfile?
+  doctorProfile  DoctorProfile?
+
+  cancelledAppointments Appointment[] @relation("AppointmentCancelledBy")
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  @@index([role])
+}
+
+model PatientProfile {
+  id     String @id @default(uuid()) @db.Uuid
+  userId String @unique @db.Uuid
+
+  fullName    String    @db.VarChar(150)
+  phone       String    @unique @db.VarChar(20)
+  dateOfBirth DateTime? @db.Date
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  appointments Appointment[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+}
+
+model Specialty {
+  id          String  @id @default(uuid()) @db.Uuid
+  name        String  @unique @db.VarChar(100)
+  description String? @db.Text
+  isActive    Boolean @default(true)
+
+  doctors DoctorProfile[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+}
+
+model DoctorProfile {
+  id          String @id @default(uuid()) @db.Uuid
+  userId      String @unique @db.Uuid
+  specialtyId String @db.Uuid
+
+  fullName String  @db.VarChar(150)
+  phone    String? @unique @db.VarChar(20)
+
+  bio             String? @db.Text
+  experienceYears Int     @default(0)
+  avatarUrl       String? @db.VarChar(500)
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Restrict)
+  specialty Specialty @relation(fields: [specialtyId], references: [id], onDelete: Restrict)
+
+  schedules    DoctorSchedule[]
+  dateSchedules DoctorDateSchedule[]
+  blockedTimes BlockedTime[]
+  appointments Appointment[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  @@index([specialtyId])
+}
+
+model DoctorSchedule {
+  id       String @id @default(uuid()) @db.Uuid
+  doctorId String @db.Uuid
+
+  dayOfWeek DayOfWeek
+
+  startMinute Int
+  endMinute   Int
+  slotMinutes Int     @default(30)
+  isActive    Boolean @default(true)
+
+  doctor DoctorProfile @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  @@unique([doctorId, dayOfWeek, startMinute, endMinute])
+  @@index([doctorId, dayOfWeek])
+}
+
+model DoctorDateSchedule {
+  id       String @id @default(uuid()) @db.Uuid
+  doctorId String @db.Uuid
+
+  workDate DateTime @db.Date
+
+  startMinute Int
+  endMinute   Int
+  slotMinutes Int     @default(30)
+  isActive    Boolean @default(true)
+
+  note String? @db.VarChar(255)
+
+  doctor DoctorProfile @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  @@unique([doctorId, workDate, startMinute, endMinute])
+  @@index([doctorId, workDate])
+}
+
+model BlockedTime {
+  id       String @id @default(uuid()) @db.Uuid
+  doctorId String @db.Uuid
+
+  startAt DateTime @db.Timestamptz(3)
+  endAt   DateTime @db.Timestamptz(3)
+  reason  String?  @db.VarChar(255)
+
+  doctor DoctorProfile @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  affectedAppointments Appointment[] @relation("AppointmentBlockedTime")
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  @@index([doctorId, startAt])
+  @@index([doctorId, endAt])
+}
+
+model Appointment {
+  id String @id @default(uuid()) @db.Uuid
+
+  patientId String @db.Uuid
+  doctorId  String @db.Uuid
+
+  startAt DateTime @db.Timestamptz(3)
+  endAt   DateTime @db.Timestamptz(3)
+
+  status AppointmentStatus @default(CONFIRMED)
+
+  // Khi bác sĩ block vào thời gian đã có lịch
+  rescheduleReason         String?            @db.VarChar(500)
+  reschedulePreviousStatus AppointmentStatus?
+  relatedBlockedTimeId     String?            @db.Uuid
+
+  // Khi appointment thực sự bị hủy
+  cancelledAt        DateTime?           @db.Timestamptz(3)
+  cancellationReason String?             @db.VarChar(500)
+  cancellationSource CancellationSource?
+  cancelledByUserId  String?             @db.Uuid
+
+  completedAt DateTime? @db.Timestamptz(3)
+
+  patient PatientProfile @relation(fields: [patientId], references: [id], onDelete: Restrict)
+  doctor  DoctorProfile  @relation(fields: [doctorId], references: [id], onDelete: Restrict)
+
+  cancelledBy User? @relation("AppointmentCancelledBy", fields: [cancelledByUserId], references: [id], onDelete: SetNull)
+
+  relatedBlockedTime BlockedTime? @relation("AppointmentBlockedTime", fields: [relatedBlockedTimeId], references: [id], onDelete: SetNull)
+
+  review Review?
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  @@index([patientId, startAt])
+  @@index([doctorId, startAt])
+  @@index([status])
+  @@index([startAt])
+  @@index([relatedBlockedTimeId])
+}
+
+model Review {
+  id            String @id @default(uuid()) @db.Uuid
+  appointmentId String @unique @db.Uuid
+
+  rating  Int
+  comment String? @db.Text
+
+  appointment Appointment @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+}
