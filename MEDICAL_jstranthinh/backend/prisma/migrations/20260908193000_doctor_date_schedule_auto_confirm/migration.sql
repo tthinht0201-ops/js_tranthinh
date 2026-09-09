@@ -1,4 +1,4 @@
--- CreateTable: lịch làm việc ghi đè theo ngày cụ thể
+
 CREATE TABLE "DoctorDateSchedule" (
     "id" UUID NOT NULL,
     "doctorId" UUID NOT NULL,
