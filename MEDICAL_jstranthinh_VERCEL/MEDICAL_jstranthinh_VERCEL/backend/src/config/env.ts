@@ -36,7 +36,17 @@ const envSchema = z.object({
   GEMINI_MODEL: z.string().min(1).optional(),
 });
 
-const result = envSchema.safeParse(process.env);
+const effectiveNodeEnv =
+  process.env.NODE_ENV ??
+  (process.env.VERCEL_ENV === "production" ||
+  process.env.VERCEL_ENV === "preview"
+    ? "production"
+    : "development");
+
+const result = envSchema.safeParse({
+  ...process.env,
+  NODE_ENV: effectiveNodeEnv,
+});
 
 if (!result.success) {
   console.error("Invalid environment variables:", result.error.flatten());
