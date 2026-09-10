@@ -1,7 +1,7 @@
 import cors from "cors";
-import express from "express";
+import express, { type RequestHandler } from "express";
 import { rateLimit } from "express-rate-limit";
-import * as helmetModule from "helmet";
+import helmetImport from "helmet";
 
 import { env } from "./config/env.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
@@ -15,6 +15,8 @@ import scheduleRouter from "./modules/schedules/schedule.route.js";
 import specialtyRouter from "./modules/specialties/specialty.route.js";
 import statisticsRouter from "./modules/statistics/statistics.route.js";
 
+const helmet = helmetImport as unknown as () => RequestHandler;
+
 const app = express();
 
 app.disable("x-powered-by");
@@ -23,7 +25,7 @@ if (env.NODE_ENV === "production") {
   app.set("trust proxy", 1);
 }
 
-app.use(helmetModule.default());
+app.use(helmet());
 app.use(
   cors({
     origin: (origin, callback) => {
