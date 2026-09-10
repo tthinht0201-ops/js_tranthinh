@@ -1,0 +1,1 @@
+{"version":3,"file":"patient.controller.d.ts","sourceRoot":"","sources":["../../../src/modules/patients/patient.controller.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EACV,OAAO,EACP,QAAQ,EACT,MAAM,SAAS,CAAC;AAWjB,eAAO,MAAM,6BAA6B,GACxC,KAAK,OAAO,EACZ,KAAK,QAAQ,KACZ,OAAO,CAAC,IAAI,CAgCd,CAAC;AAEF,eAAO,MAAM,gCAAgC,GAEzC,KAAK,OAAO,EACZ,KAAK,QAAQ,KACZ,OAAO,CAAC,IAAI,CAyDd,CAAC"}
